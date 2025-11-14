@@ -22,14 +22,9 @@ class CatTest {
     }
 
     @Test
-    void getFoodTrueCatShowsTrue() {
+    void getFoodTrueCatShowsTrue() throws Exception {
         Cat cat = new Cat(feline);
-
-        try {
-            cat.getFood();
-            Mockito.verify(feline, Mockito.times(1)).eatMeat();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        cat.getFood();
+        Mockito.verify(feline, Mockito.times(1)).eatMeat();
     }
 }

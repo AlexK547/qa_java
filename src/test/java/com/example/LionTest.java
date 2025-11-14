@@ -15,11 +15,9 @@ class LionTest {
 
     @Mock
     Feline feline;
-    @Mock
-    Lion lion;
 
     public void createLion(String sex) throws Exception {
-        lion = new Lion(sex, feline);
+        Lion lion = new Lion(sex, feline);
     }
 
     @ParameterizedTest(name = "Проверка создания льва {0}")
@@ -37,42 +35,30 @@ class LionTest {
 
     @ParameterizedTest(name = "Проверка метода получения количества котят у льва {0}")
     @ValueSource(strings = {"Самец", "Самка"})
-    void getKittensTrueLionShowsTrue(String sex) {
-        try {
-            Lion lion = new Lion(sex, feline);
-            lion.getKittens();
-            Mockito.verify(feline, Mockito.times(1)).getKittens();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    void getKittensTrueLionShowsTrue(String sex) throws Exception {
+        Lion lion = new Lion(sex, feline);
+        lion.getKittens();
+        Mockito.verify(feline, Mockito.times(1)).getKittens();
     }
 
     @ParameterizedTest(name = "Проверка наличия имени у льва {0}")
     @ValueSource(strings = {"Самец", "Самка"})
-    void doesHaveManeTrueLionShowsTrue(String sex) {
-        try {
-            Lion lion = new Lion(sex, feline);
-            boolean haveName = lion.doesHaveMane();
-            if (sex.equals("Самец")) {
-                assertTrue(haveName);
-            }
-            if (sex.equals("Самка")) {
-                assertFalse(haveName);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+    void doesHaveManeTrueLionShowsTrue(String sex) throws Exception {
+        Lion lion = new Lion(sex, feline);
+        boolean haveName = lion.doesHaveMane();
+        if (sex.equals("Самец")) {
+            assertTrue(haveName);
+        }
+        if (sex.equals("Самка")) {
+            assertFalse(haveName);
         }
     }
 
     @ParameterizedTest(name = "Проверка метода получения перечня еды у льва {0}")
     @ValueSource(strings = {"Самец", "Самка"})
-    void getFoodTrueLionShowsTrue(String sex) {
-        try {
-            Lion lion = new Lion(sex, feline);
-            lion.getFood();
-            Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    void getFoodTrueLionShowsTrue(String sex) throws Exception {
+        Lion lion = new Lion(sex, feline);
+        lion.getFood();
+        Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
     }
 }
