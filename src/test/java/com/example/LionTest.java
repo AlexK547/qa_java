@@ -23,14 +23,10 @@ class LionTest {
     @ParameterizedTest(name = "Проверка создания льва {0}")
     @ValueSource(strings = {"Не определено"})
     void createLionWithIncorrectNameThrowExeption(String sex) {
-        try {
-            assertThrows(
-                    Exception.class,
-                    () -> createLion(sex)
-            );
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        assertThrows(
+                Exception.class,
+                () -> createLion(sex)
+        );
     }
 
     @ParameterizedTest(name = "Проверка метода получения количества котят у льва {0}")
